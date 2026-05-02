@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Pastimes — Create Account</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+  <div class="rainbow-bar"></div>
+  <div class="auth-page">
+    <div class="auth-card">
+      <div class="auth-logo text-center">Pastimes</div>
+      <div class="auth-tagline">Curating Histories, One Piece at a Time</div>
+ 
+      <div class="auth-role-toggle" id="roleToggle">
+        <div class="auth-role-btn active" data-role="buyer" onclick="setRole('buyer',this)">I'm a Buyer</div>
+        <div class="auth-role-btn" data-role="seller" onclick="setRole('seller',this)">I'm a Seller</div>
+      </div>
+ 
+      <h1 class="auth-heading">Create account</h1>
+ 
+      <?php if (!empty($error)): ?>
+        <div class="alert alert-error"><?= htmlspecialchars($error) ?></div>
+      <?php endif; ?>
+ 
+      <!-- PHP: action="php/" method="POST" -->
+      <form id="registerForm" action="php/" method="POST" enctype="multipart/form-data">
+        <input type="hidden" name="action" value="register">
+        <input type="hidden" name="role" id="roleInput" value="buyer">
+ 
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">First Name</label>
+            <input class="form-control" type="text" name="first_name" placeholder="Elena" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Last Name</label>
+            <input class="form-control" type="text" name="last_name" placeholder="Vance" required>
+          </div>
+        </div>
+ 
+        <div class="form-group">
+          <label class="form-label">Email Address</label>
+          <input class="form-control" type="email" name="email" placeholder="you@example.co.za" required>
+        </div>
+ 
+        <div class="form-group">
+          <label class="form-label">Username / Handle</label>
+          <input class="form-control" type="text" name="username" placeholder="@the_archivist">
+        </div>
+ 
+        <div class="form-group">
+          <label class="form-label">City</label>
+          <select class="form-control" name="city">
+            <option value="">Select city...</option>
+            <option>Cape Town, WC</option>
+            <option>Johannesburg, GP</option>
+            <option>Pretoria, GP</option>
+            <option>Durban, KZN</option>
+            <option>Port Elizabeth, EC</option>
+            <option>Other</option>
+          </select>
+        </div>
+ 
+        <!-- Seller-only fields -->
+        <div id="sellerFields" style="display:none">
+          <div class="form-group">
+            <label class="form-label">Bio / Description</label>
+            <textarea class="form-control" name="bio" rows="3" placeholder="Tell buyers about your collection..."></textarea>
+          </div>
+        </div>
+ 
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <input class="form-control" type="password" name="password" placeholder="••••••••" required minlength="8">
+        </div>
+ 
+        <div class="form-group">
+          <label class="form-label">Confirm Password</label>
+          <input class="form-control" type="password" name="password_confirm" placeholder="••••••••" required>
+        </div>
+ 
+        <button class="btn btn-primary btn-block btn-lg" type="submit">Create Account</button>
+      </form>
+ 
+      <p class="auth-footer mt-16">Already have an account? <a href="login.html">Sign in</a></p>
+      <p class="auth-tagline-bottom">Wear it again. Sell it again.</p>
+    </div>
+  </div>
+ 
+  <script src="script.js"></script>
+</body>
+</html>
