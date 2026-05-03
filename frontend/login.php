@@ -103,7 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action']) && $_POST['a
       <?php endif; ?>
  
       <button class="auth-social-btn" type="button">
-        <i class="fab fa-google" style="color:#DB4437"></i> Continue with Google
+        <i class="fab fa-sgoogle" style="color:#DB4437"></i> Continue with Google
       </button>
       <button class="auth-social-btn" type="button">
         <i class="fab fa-apple"></i> Continue with Apple

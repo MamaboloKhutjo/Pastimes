@@ -29,7 +29,7 @@
       <div class="profile-info">
         <div style="position:relative">
           <!-- PHP: echo $seller['profile_image'] -->
-          <img class="profile-avatar" src="#" alt="Elena Vance">
+          <img class="profile-avatar" src="./assets/images/profile_woman2.jpg" alt="Elena Vance">
           <!-- PHP: if $seller['status'] === 'approved' -->
           <div class="profile-verified"><i class="fas fa-check" style="font-size:.6rem"></i></div>
         </div>
@@ -75,23 +75,23 @@
     <!-- PHP: foreach $seller['listings'] as $l -->
     <div class="storefront-grid" id="storefrontGrid">
       <div class="storefront-item" onclick="location.href='./product.php'">
-        <img src="#" alt="Trench">
+        <img src="./assets/images/trench_coat.jpg" alt="Trench">
       </div>
       <div class="storefront-item" onclick="location.href='./product.php?id=2'">
-        <img src="#" alt="Jacket">
+        <img src="./assets/images/leather_jacket.jpg" alt="Jacket">
         <div class="storefront-sold-badge">Sold</div>
       </div>
       <div class="storefront-item" onclick="location.href='./product.php?id=3'">
-        <img src="#" alt="Blouse">
+        <img src="./assets/images/silk_blouse.jpg" alt="Blouse">
       </div>
       <div class="storefront-item" onclick="location.href='./product.php?id=4'">
-        <img src="#" alt="Scarf">
+        <img src="./assets/images/silk_scarf.jpg" alt="Scarf">
       </div>
       <div class="storefront-item" onclick="location.href='./product.php?id=5'">
-        <img src="#" alt="Co-ord">
+        <img src="./assets/images/linen_coord.jpg" alt="Co-ord">
       </div>
       <div class="storefront-item" onclick="location.href='./product.php?id=6'">
-        <img src="#" alt="Coat">
+        <img src="./assets/images/trench_coat.jpg" alt="Coat">
       </div>
     </div>
     <!-- PHP: endforeach; load_more pagination -->
@@ -105,7 +105,7 @@
     <div id="reviewsGrid" style="display:none;padding:20px">
       <div class="card mb-16">
         <div class="d-flex align-center gap-8 mb-8">
-          <img src="#" style="width:36px;height:36px;border-radius:50%">
+          <img src="./assets/images/profile_man2_small.jpg" style="width:36px;height:36px;border-radius:50%">
           <div>
             <strong>@marcus.v</strong>
             <div style="font-size:.75rem;color:var(--clr-muted)">⭐⭐⭐⭐⭐ · 14 March 2025</div>

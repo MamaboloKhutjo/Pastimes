@@ -206,7 +206,7 @@
         ? matches.map(item => `
           <div class="product-card" onclick="location.href='product.html'">
             <div class="product-card-img">
-              <img src="#" alt="${item.title}">
+              <img src="./assets/images/generic_clothing.jpg" alt="${item.title}">
               <div class="product-card-heart" onclick="event.stopPropagation(); toggleHeart(event,this)"><i class="far fa-heart"></i></div>
             </div>
             <div class="product-card-info">

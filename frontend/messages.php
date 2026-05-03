@@ -14,7 +14,7 @@
     <!-- Messages top bar -->
     <header class="messages-topbar">
       <button class="icon-btn" onclick="history.back()"><i class="fas fa-arrow-left"></i></button>
-      <img src="#" alt="Elena V." style="width:38px;height:38px;border-radius:50%;object-fit:cover;border:2px solid var(--clr-border)">
+      <img src="./assets/images/profile_woman2.jpg" alt="Elena V." style="width:38px;height:38px;border-radius:50%;object-fit:cover;border:2px solid var(--clr-border)">
       <div class="messages-seller-info" style="flex:1;margin-left:10px">
         <!-- PHP: echo $conversation['other_user_name'] -->
         <strong>Elena V.</strong>
@@ -27,7 +27,7 @@
     <!-- Item context bar -->
     <!-- PHP: echo $conversation['product'] details -->
     <div class="messages-item-bar">
-      <img src="#" alt="Trench">
+      <img src="./assets/images/trench_coat.jpg" alt="Trench">
       <div>
         <div class="messages-item-name">Vintage Oversized Trench</div>
         <div class="messages-item-meta">R 2 500 · Size M</div>
@@ -66,8 +66,8 @@
         <div class="bubble">
           23 inches across — beautiful drape. Shipping via Courier Guy within 48 hours of payment.
           <div class="bubble-images">
-            <img src="#" alt="detail">
-            <img src="#" alt="detail">
+            <img src="./assets/images/clothing_detail.jpg" alt="detail">
+            <img src="./assets/images/clothing_detail.jpg" alt="detail">
           </div>
         </div>
         <span class="bubble-time">10:49 AM</span>

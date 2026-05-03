@@ -34,7 +34,7 @@
         </div>
         <div class="avatar-btn">
           <!-- PHP: echo user profile image src -->
-          <img src="#" alt="Profile">
+          <img src="./assets/images/profile_man1.jpg" alt="Profile">
         </div>
       </div>
     </header>
@@ -43,29 +43,29 @@
     <div class="stories-row">
       <div class="story-item active">
         <div class="story-ring">
-          <img src="#" alt="Your edit">
+          <img src="./assets/images/profile_woman1.jpg" alt="Your edit">
         </div>
         <span class="story-label">Your Edit</span>
       </div>
       <!-- PHP: foreach $following_sellers as $s -->
       <div class="story-item">
-        <div class="story-ring"><img src="#" alt="marcus.v"></div>
+        <div class="story-ring"><img src="./assets/images/profile_man2.jpg" alt="marcus.v"></div>
         <span class="story-label">marcus.v</span>
       </div>
       <div class="story-item">
-        <div class="story-ring"><img src="#" alt="eliza_s"></div>
+        <div class="story-ring"><img src="./assets/images/profile_woman2.jpg" alt="eliza_s"></div>
         <span class="story-label">eliza_s</span>
       </div>
       <div class="story-item">
-        <div class="story-ring"><img src="#" alt="curated_j"></div>
+        <div class="story-ring"><img src="./assets/images/profile_man3.jpg" alt="curated_j"></div>
         <span class="story-label">curated_j</span>
       </div>
       <div class="story-item">
-        <div class="story-ring"><img src="#" alt="sara.h"></div>
+        <div class="story-ring"><img src="./assets/images/profile_woman3.jpg" alt="sara.h"></div>
         <span class="story-label">sara.h</span>
       </div>
       <div class="story-item">
-        <div class="story-ring"><img src="#" alt="theo_v"></div>
+        <div class="story-ring"><img src="./assets/images/profile_man4.jpg" alt="theo_v"></div>
         <span class="story-label">theo_v</span>
       </div>
       <!-- PHP: endforeach -->
@@ -97,14 +97,14 @@
       <!-- Hero / editorial pick -->
       <div class="product-card hero" onclick="location.href='product.html'">
         <div class="product-card-img">
-          <img src="#" alt="Burberry Trench">
+          <img src="./assets/images/trench_coat.jpg" alt="Burberry Trench">
           <div class="product-card-badge editorial">Editorial Pick</div>
           <div class="product-card-heart" onclick="toggleHeart(event,this)"><i class="far fa-heart"></i></div>
           <div class="product-card-overlay">
             <div class="title">1970s Burberry Trench — Cape Town</div>
             <div class="price">R 4 200</div>
             <div class="seller">
-              <img src="#" alt="seller">
+              <img src="./assets/images/profile_man1.jpg" alt="seller">
               @the_archivist
             </div>
           </div>
@@ -114,7 +114,7 @@
       <!-- Standard cards -->
       <div class="product-card" onclick="location.href='./product.php'">
         <div class="product-card-img">
-          <img src="#" alt="Silk Wrap Blouse">
+          <img src="./assets/images/silk_blouse.jpg" alt="Silk Wrap Blouse">
           <div class="product-card-heart" onclick="toggleHeart(event,this)"><i class="far fa-heart"></i></div>
         </div>
         <div class="product-card-info">
@@ -126,7 +126,7 @@
  
       <div class="product-card" onclick="location.href='./product.php'">
         <div class="product-card-img">
-          <img src="#" alt="Japanese Denim Jacket">
+          <img src="./assets/images/denim_jacket.jpg" alt="Japanese Denim Jacket">
           <div class="product-card-badge rare">Rare Find</div>
           <div class="product-card-heart" onclick="toggleHeart(event,this)"><i class="far fa-heart"></i></div>
         </div>
@@ -139,7 +139,7 @@
  
       <div class="product-card" onclick="location.href='product.html'">
         <div class="product-card-img">
-          <img src="#" alt="Linen Co-ord Set">
+          <img src="./assets/images/linen_coord.jpg" alt="Linen Co-ord Set">
           <div class="product-card-heart" onclick="toggleHeart(event,this)"><i class="far fa-heart"></i></div>
         </div>
         <div class="product-card-info">
@@ -151,7 +151,7 @@
  
       <div class="product-card" onclick="location.href='product.html'">
         <div class="product-card-img">
-          <img src="#" alt="Archive Silk Scarf">
+          <img src="./assets/images/silk_scarf.jpg" alt="Archive Silk Scarf">
           <div class="product-card-heart" onclick="toggleHeart(event,this)"><i class="far fa-heart"></i></div>
         </div>
         <div class="product-card-info">

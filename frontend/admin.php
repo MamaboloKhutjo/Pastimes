@@ -125,7 +125,7 @@ $transactions = $conn->query("
  
       <div class="sidebar-footer">
         <div class="sidebar-user">
-          <img src="<?= htmlspecialchars($admin['profile_image'] ?? '../frontend/assets/default-avatar.png') ?>" alt="Admin">
+          <img src="./assets/images/profile_man1_50.jpg" alt="Admin">
           <div>
             <div class="sidebar-user-name">Admin · <?= htmlspecialchars($admin['full_name'] ?? 'Admin') ?></div>
             <div class="sidebar-user-email"><?= htmlspecialchars($admin['email'] ?? 'admin@pastimes.co.za') ?></div>
@@ -191,7 +191,7 @@ $transactions = $conn->query("
               <?php while ($reg = $pending->fetch_assoc()): ?>
                 <div class="reg-card">
                   <div class="d-flex align-center gap-12 mb-8">
-                    <img class="reg-card-avatar" src="<?= htmlspecialchars($reg['profile_image'] ?? '../frontend/assets/default-avatar.png') ?>" alt="<?= htmlspecialchars($reg['first_name']) ?>">
+                    <img class="reg-card-avatar" src="./assets/images/profile_man1.jpg" alt="<?= htmlspecialchars($reg['first_name']) ?>">
                     <div>
                       <div class="reg-card-name"><?= htmlspecialchars($reg['first_name'] . ' ' . $reg['last_name']) ?></div>
                       <div class="reg-card-email"><?= htmlspecialchars($reg['email']) ?></div>

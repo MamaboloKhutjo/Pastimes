@@ -30,7 +30,7 @@
         <!-- PHP: foreach $cart_items as $item -->
         <div class="cart-item">
           <div class="cart-item-img">
-            <img src="#" alt="Wool Blazer">
+            <img src="./assets/images/leather_jacket.jpg" alt="Wool Blazer">
           </div>
           <div class="cart-item-info">
             <div class="cart-item-name">Vintage Wool Blazer</div>
@@ -49,7 +49,7 @@
  
         <div class="cart-item">
           <div class="cart-item-img">
-            <img src="#" alt="Silk Scarf">
+            <img src="./assets/images/silk_scarf.jpg" alt="Silk Scarf">
           </div>
           <div class="cart-item-info">
             <div class="cart-item-name">Archive Silk Scarf</div>
@@ -68,7 +68,7 @@
  
         <div class="cart-item">
           <div class="cart-item-img">
-            <img src="#" alt="Linen Co-ord">
+            <img src="./assets/images/linen_coord.jpg" alt="Linen Co-ord">
           </div>
           <div class="cart-item-info">
             <div class="cart-item-name">Linen Co-ord Set</div>
@@ -94,7 +94,7 @@
           </div>
           <p class="bundle-promo-title">Add the 'Kapital Denim' to complete the look</p>
           <div class="bundle-promo-item">
-            <img src="#" alt="Denim Jacket">
+            <img src="./assets/images/denim_jacket.jpg" alt="Denim Jacket">
             <div>
               <span class="bundle-price">Bundle Price: R 4 700</span>
               <span class="bundle-original">R 5 500 original</span>

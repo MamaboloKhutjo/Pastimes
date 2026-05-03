@@ -39,7 +39,7 @@
       <div class="product-grid" style="margin-top:12px">
         <div class="product-card" onclick="location.href='./product.php'">
           <div class="product-card-img">
-            <img src="#" alt="Leather Jacket">
+            <img src="./assets/images/leather_jacket.jpg" alt="Leather Jacket">
             <div class="product-card-heart" onclick="event.stopPropagation(); toggleHeart(event,this)"><i class="far fa-heart"></i></div>
           </div>
           <div class="product-card-info">
@@ -50,7 +50,7 @@
         </div>
         <div class="product-card" onclick="location.href='./product.php?id=2'">
           <div class="product-card-img">
-            <img src="#" alt="Silk Skirt">
+            <img src="./assets/images/silk_skirt.jpg" alt="Silk Skirt">
             <div class="product-card-heart" onclick="event.stopPropagation(); toggleHeart(event,this)"><i class="far fa-heart"></i></div>
           </div>
           <div class="product-card-info">
@@ -61,7 +61,7 @@
         </div>
         <div class="product-card" onclick="location.href='./product.php?id=3'">
           <div class="product-card-img">
-            <img src="#" alt="Cashmere Sweater">
+            <img src="./assets/images/cashmere_sweater.jpg" alt="Cashmere Sweater">
             <div class="product-card-heart" onclick="event.stopPropagation(); toggleHeart(event,this)"><i class="far fa-heart"></i></div>
           </div>
           <div class="product-card-info">
