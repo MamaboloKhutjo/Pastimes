@@ -1,0 +1,5 @@
+mashaole_letsoalo|mashaole@example.com|password123|Mashaole|Letsoalo|buyer|Cape Town|Vintage lover
+khutjo_mmamabolo|khutjo@example.com|pass456|Khutjo|Mmamabolo|seller|JHB|Curated archive
+marcus_v|marcus@example.com|marcus789|Marcus|Vance|buyer|Durban|Streetwear collector
+eliza_s|eliza@example.com|eliza321|Eliza|Stone|seller|Pretoria|Sustainable fashion
+lisa_ray|lisa@example.com|lisapass|Lisa|Ray|buyer|Cape Town|Minimalist style

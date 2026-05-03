@@ -1,0 +1,2 @@
+admin|admin@pastimes.co.za|admin123|Super Administrator|super_admin
+moderator|mod@pastimes.co.za|modpass|Content Moderator|moderator
