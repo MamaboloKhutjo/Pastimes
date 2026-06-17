@@ -13,7 +13,7 @@
  
     <!-- Messages top bar -->
     <header class="messages-topbar">
-      <button class="icon-btn" onclick="history.back()"><i class="fas fa-arrow-left"></i></button>
+      <a href="./home.php" class="icon-btn"><i class="fas fa-arrow-left"></i></a>
       <img src="./assets/images/profile_woman2.jpg" alt="Elena V." style="width:38px;height:38px;border-radius:50%;object-fit:cover;border:2px solid var(--clr-border)">
       <div class="messages-seller-info" style="flex:1;margin-left:10px">
         <!-- PHP: echo $conversation['other_user_name'] -->
@@ -21,7 +21,7 @@
         <!-- PHP: if $other_user['seller_status'] === 'approved' -->
         <div class="messages-seller-badge">Approved Seller</div>
       </div>
-      <button class="icon-btn"><i class="fas fa-ellipsis-v"></i></button>
+      <div class="icon-btn"><i class="fas fa-ellipsis-v"></i></div>
     </header>
  
     <!-- Item context bar -->
@@ -101,21 +101,21 @@
  
     <!-- Bottom nav -->
      <nav class="bottom-nav">
-      <div class="bottom-nav-item" onclick="location.href='./home.php'">
+      <a href="./home.php" class="bottom-nav-item">
         <i class="fas fa-home nav-icon-lg"></i> Home
-      </div>
-      <div class="bottom-nav-item active" onclick="location.href='./search.php'">
+      </a>
+      <a href="./search.php" class="bottom-nav-item active">
         <i class="fas fa-search nav-icon-lg"></i> Search
-      </div>
-      <div class="bottom-nav-sell" onclick="location.href='./new-listing.php'">
+      </a>
+      <a href="./new-listing.php" class="bottom-nav-sell">
         <i class="fas fa-plus"></i>
-      </div>
-      <div class="bottom-nav-item" onclick="location.href='./messages.php'">
+      </a>
+      <a href="./messages.php" class="bottom-nav-item">
         <i class="fas fa-comment nav-icon-lg"></i> Messages
-      </div>
-      <div class="bottom-nav-item" onclick="location.href='./profile.php'">
+      </a>
+      <a href="./profile.php" class="bottom-nav-item">
         <i class="fas fa-user nav-icon-lg"></i> Profile
-      </div>
+      </a>
     </nav>
   </div>
  

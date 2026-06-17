@@ -1,3 +1,19 @@
+<?php
+session_start();
+
+// Redirect buyers to home - only sellers can list
+if (!isset($_SESSION['user_id'])) {
+  header('Location: ./login.php');
+  exit();
+}
+
+// Check if user is a seller (role='seller' from database)
+// For now, check if seller_id exists in session or should query user role
+if (!isset($_SESSION['seller_role']) || $_SESSION['seller_role'] !== 'seller') {
+  header('Location: ./home.php');
+  exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +29,7 @@
  
     <!-- Top bar -->
     <header class="listing-topbar">
-      <button class="icon-btn" onclick="history.back()"><i class="fas fa-times"></i></button>
+      <a href="./home.php" class="icon-btn"><i class="fas fa-times"></i></a>
       <h1 class="listing-title">New Listing</h1>
       <!-- PHP: auto-save draft on input changes -->
       <button class="btn btn-secondary btn-sm" id="draftBtn" onclick="saveDraft()">Draft</button>
@@ -144,6 +160,24 @@
       </form>
     </div>
  
+    <!-- Bottom nav -->
+    <nav class="bottom-nav">
+      <a href="./home.php" class="bottom-nav-item">
+        <i class="fas fa-home nav-icon-lg"></i> Home
+      </a>
+      <a href="./search.php" class="bottom-nav-item">
+        <i class="fas fa-search nav-icon-lg"></i> Search
+      </a>
+      <a href="./new-listing.php" class="bottom-nav-sell active">
+        <i class="fas fa-plus"></i>
+      </a>
+      <a href="./messages.php" class="bottom-nav-item">
+        <i class="fas fa-comment nav-icon-lg"></i> Messages
+      </a>
+      <a href="./profile.php" class="bottom-nav-item">
+        <i class="fas fa-user nav-icon-lg"></i> Profile
+      </a>
+    </nav>
   </div>
  
   <script src="../frontend/js/script.js"></script>

@@ -13,10 +13,10 @@
  
     <!-- Top bar -->
     <header class="app-topbar" style="padding:12px 16px">
-      <button class="icon-btn" onclick="history.back()"><i class="fas fa-arrow-left"></i></button>
-      <div class="app-logo">Pastimes</div>
+      <a href="./home.php" class="icon-btn"><i class="fas fa-arrow-left"></i></a>
+      <a href="./home.php" class="app-logo">Pastimes</a>
       <div class="app-topbar-actions">
-        <div class="icon-btn"><i class="fas fa-share-alt"></i></div>
+        <a href="./cart.php" class="icon-btn"><i class="fas fa-shopping-bag"></i></a>
         <div class="icon-btn"><i class="fas fa-ellipsis-h"></i></div>
       </div>
     </header>
@@ -107,9 +107,9 @@
     <!-- Sticky action bar -->
     <div class="product-actions-sticky">
       <!-- PHP: action handled by backend to open conversation with seller -->
-      <button class="btn btn-secondary" onclick="location.href='./messages.php'">
+      <a href="./messages.php" class="btn btn-secondary">
         <i class="fas fa-comment"></i> Message
-      </button>
+      </a>
       <!-- PHP: add to cart action -->
       <button class="btn btn-primary" onclick="addToCart()">
         Add to Cart · R 3 200
@@ -118,21 +118,21 @@
  
     <!-- Bottom nav -->
      <nav class="bottom-nav">
-      <div class="bottom-nav-item" onclick="location.href='./home.php'">
+      <a href="./home.php" class="bottom-nav-item">
         <i class="fas fa-home nav-icon-lg"></i> Home
-      </div>
-      <div class="bottom-nav-item active" onclick="location.href='./search.php'">
+      </a>
+      <a href="./search.php" class="bottom-nav-item active">
         <i class="fas fa-search nav-icon-lg"></i> Search
-      </div>
-      <div class="bottom-nav-sell" onclick="location.href='./new-listing.php'">
+      </a>
+      <a href="./new-listing.php" class="bottom-nav-sell">
         <i class="fas fa-plus"></i>
-      </div>
-      <div class="bottom-nav-item" onclick="location.href='./messages.php'">
+      </a>
+      <a href="./messages.php" class="bottom-nav-item">
         <i class="fas fa-comment nav-icon-lg"></i> Messages
-      </div>
-      <div class="bottom-nav-item" onclick="location.href='./profile.php'">
+      </a>
+      <a href="./profile.php" class="bottom-nav-item">
         <i class="fas fa-user nav-icon-lg"></i> Profile
-      </div>
+      </a>
     </nav>
   </div>
  

@@ -22,20 +22,20 @@
         <div id="searchResults" class="search-dropdown" style="display:none"></div>
       </div>
       <div class="app-topbar-actions">
-        <div class="icon-btn">
+        <a href="./cart.php" class="icon-btn">
           <i class="fas fa-shopping-bag"></i>
           <!-- PHP: echo cart item count from session -->
           <span class="badge-count">3</span>
-        </div>
-        <div class="icon-btn notif-btn">
+        </a>
+        <a href="./messages.php" class="icon-btn notif-btn">
           <i class="fas fa-bell"></i>
           <!-- PHP: echo unread notification count -->
           <span class="badge-count">5</span>
-        </div>
-        <div class="avatar-btn">
+        </a>
+        <a href="./profile.php" class="avatar-btn">
           <!-- PHP: echo user profile image src -->
           <img src="./assets/images/profile_man1.jpg" alt="Profile">
-        </div>
+        </a>
       </div>
     </header>
  
@@ -95,7 +95,7 @@
     <div class="product-grid" id="productGrid">
  
       <!-- Hero / editorial pick -->
-      <div class="product-card hero" onclick="location.href='product.html'">
+      <a href="./product.php" class="product-card hero">
         <div class="product-card-img">
           <img src="./assets/images/trench_coat.jpg" alt="Burberry Trench">
           <div class="product-card-badge editorial">Editorial Pick</div>
@@ -109,10 +109,10 @@
             </div>
           </div>
         </div>
-      </div>
+      </a>
  
       <!-- Standard cards -->
-      <div class="product-card" onclick="location.href='./product.php'">
+      <a href="./product.php" class="product-card">
         <div class="product-card-img">
           <img src="./assets/images/silk_blouse.jpg" alt="Silk Wrap Blouse">
           <div class="product-card-heart" onclick="toggleHeart(event,this)"><i class="far fa-heart"></i></div>
@@ -122,9 +122,9 @@
           <div class="product-card-meta">Vintage · Size S</div>
           <div class="product-card-price">R 1 500</div>
         </div>
-      </div>
+      </a>
  
-      <div class="product-card" onclick="location.href='./product.php'">
+      <a href="./product.php" class="product-card">
         <div class="product-card-img">
           <img src="./assets/images/denim_jacket.jpg" alt="Japanese Denim Jacket">
           <div class="product-card-badge rare">Rare Find</div>
@@ -135,9 +135,9 @@
           <div class="product-card-meta">Kapital · Size L · JHB</div>
           <div class="product-card-price">R 5 500</div>
         </div>
-      </div>
+      </a>
  
-      <div class="product-card" onclick="location.href='product.html'">
+      <a href="./product.php" class="product-card">
         <div class="product-card-img">
           <img src="./assets/images/linen_coord.jpg" alt="Linen Co-ord Set">
           <div class="product-card-heart" onclick="toggleHeart(event,this)"><i class="far fa-heart"></i></div>
@@ -147,9 +147,9 @@
           <div class="product-card-meta">Sustainable · Size XS · JHB</div>
           <div class="product-card-price">R 1 900</div>
         </div>
-      </div>
+      </a>
  
-      <div class="product-card" onclick="location.href='product.html'">
+      <a href="./product.php" class="product-card">
         <div class="product-card-img">
           <img src="./assets/images/silk_scarf.jpg" alt="Archive Silk Scarf">
           <div class="product-card-heart" onclick="toggleHeart(event,this)"><i class="far fa-heart"></i></div>
@@ -159,28 +159,28 @@
           <div class="product-card-meta">Accessories · Vintage · Durban</div>
           <div class="product-card-price">R 950</div>
         </div>
-      </div>
+      </a>
  
     </div>
     <!-- PHP: load more via AJAX or pagination -->
  
     <!-- Bottom nav -->
     <nav class="bottom-nav">
-      <div class="bottom-nav-item active" onclick="location.href='./home.php'">
+      <a href="./home.php" class="bottom-nav-item active">
         <i class="fas fa-home nav-icon-lg"></i> Home
-      </div>
-      <div class="bottom-nav-item" onclick="location.href='./search.php'">
+      </a>
+      <a href="./search.php" class="bottom-nav-item">
         <i class="fas fa-search nav-icon-lg"></i> Search
-      </div>
-      <div class="bottom-nav-sell" onclick="location.href='./new-listing.php'" title="Sell">
+      </a>
+      <a href="./new-listing.php" class="bottom-nav-sell" title="Sell">
         <i class="fas fa-plus"></i>
-      </div>
-      <div style="display:flex;flex-direction:column;align-items:center;gap:4px;font-size:.65rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--clr-muted);cursor:pointer" onclick="location.href='./messages.php'">
+      </a>
+      <a href="./messages.php" style="display:flex;flex-direction:column;align-items:center;gap:4px;font-size:.65rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--clr-muted);cursor:pointer;text-decoration:none">
         <i class="fas fa-comment nav-icon-lg" style="font-size:1.25rem"></i> Messages
-      </div>
-      <div class="bottom-nav-item" onclick="location.href='./profile.php'">
+      </a>
+      <a href="./profile.php" class="bottom-nav-item">
         <i class="fas fa-user nav-icon-lg"></i> Profile
-      </div>
+      </a>
     </nav>
  
   </div>
