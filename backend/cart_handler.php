@@ -2,7 +2,7 @@
 session_start();
 require_once __DIR__ . '/DBConn.php';
 
-$action = $_POST['action'] ?? $_GET['action'] ?? '';
+header('Content-Type: application/json');
 
 if (!isset($_SESSION['user_id'])) {
     echo json_encode(['success' => false, 'message' => 'Please login first']);
@@ -10,52 +10,148 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 $user_id = $_SESSION['user_id'];
+$action = $_POST['action'] ?? '';
 
 switch ($action) {
+
+    // =========================
+    // ADD TO CART
+    // =========================
     case 'add_to_cart':
-        $clothing_id = (int)$_POST['clothing_id'];
+
+        $clothing_id = (int)($_POST['clothing_id'] ?? 0);
         $quantity = (int)($_POST['quantity'] ?? 1);
 
-        // Check if already in cart
-        $check = $conn->prepare("SELECT id FROM tblcart WHERE user_id = ? AND clothing_id = ?");
+        if ($clothing_id <= 0) {
+            echo json_encode(['success' => false, 'message' => 'Invalid product']);
+            exit();
+        }
+
+        // check if item exists
+        $check = $conn->prepare("
+            SELECT cart_id, quantity 
+            FROM tblcart 
+            WHERE user_id = ? AND clothing_id = ?
+        ");
         $check->bind_param("ii", $user_id, $clothing_id);
         $check->execute();
-        if ($check->get_result()->num_rows > 0) {
-            $stmt = $conn->prepare("UPDATE tblcart SET quantity = quantity + ? WHERE user_id = ? AND clothing_id = ?");
-            $stmt->bind_param("iii", $quantity, $user_id, $clothing_id);
+        $result = $check->get_result();
+
+        if ($row = $result->fetch_assoc()) {
+
+            // update quantity
+            $newQty = $row['quantity'] + $quantity;
+
+            $stmt = $conn->prepare("
+                UPDATE tblcart 
+                SET quantity = ? 
+                WHERE cart_id = ?
+            ");
+            $stmt->bind_param("ii", $newQty, $row['cart_id']);
+
         } else {
-            $stmt = $conn->prepare("INSERT INTO tblcart (user_id, clothing_id, quantity) VALUES (?, ?, ?)");
+
+            // insert new
+            $stmt = $conn->prepare("
+                INSERT INTO tblcart (user_id, clothing_id, quantity)
+                VALUES (?, ?, ?)
+            ");
             $stmt->bind_param("iii", $user_id, $clothing_id, $quantity);
         }
-        $success = $stmt->execute();
-        echo json_encode(['success' => $success, 'message' => $success ? 'Added to cart' : 'Failed']);
+
+        $stmt->execute();
+
+        echo json_encode(['success' => true, 'message' => 'Added to cart']);
         break;
 
-    case 'remove_from_cart':
-        $cart_id = (int)$_POST['cart_id'];
-        $stmt = $conn->prepare("DELETE FROM tblcart WHERE id = ? AND user_id = ?");
-        $stmt->bind_param("ii", $cart_id, $user_id);
-        echo json_encode(['success' => $stmt->execute()]);
-        break;
 
+    // =========================
+    // UPDATE QUANTITY (FIXED)
+    // =========================
     case 'update_quantity':
+
+        $cart_id = (int)($_POST['cart_id'] ?? 0);
+        $change  = (int)($_POST['change'] ?? 0);
+
+        $stmt = $conn->prepare("
+            SELECT quantity 
+            FROM tblcart 
+            WHERE cart_id = ? AND user_id = ?
+        ");
+        $stmt->bind_param("ii", $cart_id, $user_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if (!$row = $result->fetch_assoc()) {
+            echo json_encode(['success' => false]);
+            exit();
+        }
+
+        $newQty = $row['quantity'] + $change;
+
+        if ($newQty < 1) {
+            $newQty = 1;
+        }
+
+        $update = $conn->prepare("
+            UPDATE tblcart 
+            SET quantity = ? 
+            WHERE cart_id = ? AND user_id = ?
+        ");
+        $update->bind_param("iii", $newQty, $cart_id, $user_id);
+
+        echo json_encode([
+            'success' => $update->execute(),
+            'new_quantity' => $newQty
+        ]);
+        break;
+
+
+    // =========================
+    // REMOVE ITEM
+    // =========================
+    case 'remove_from_cart':
+
         $cart_id = (int)$_POST['cart_id'];
-        $qty = (int)$_POST['quantity'];
-        $stmt = $conn->prepare("UPDATE tblcart SET quantity = ? WHERE id = ? AND user_id = ?");
-        $stmt->bind_param("iii", $qty, $cart_id, $user_id);
+
+        $stmt = $conn->prepare("
+            DELETE FROM tblcart 
+            WHERE cart_id = ? AND user_id = ?
+        ");
+        $stmt->bind_param("ii", $cart_id, $user_id);
+
         echo json_encode(['success' => $stmt->execute()]);
         break;
 
+
+    // =========================
+    // GET CART
+    // =========================
     case 'get_cart':
-        $result = $conn->query("
-            SELECT c.id as cart_id, c.quantity, cl.*, u.first_name, u.last_name 
-            FROM tblcart c 
-            JOIN tblclothes cl ON c.clothing_id = cl.clothing_id 
-            JOIN tbluser u ON cl.seller_id = u.user_id 
-            WHERE c.user_id = $user_id
+
+        $stmt = $conn->prepare("
+            SELECT 
+                c.cart_id,
+                c.quantity,
+                cl.*,
+                u.first_name,
+                u.last_name,
+                u.city
+            FROM tblcart c
+            JOIN tblclothes cl ON c.clothing_id = cl.clothing_id
+            JOIN tbluser u ON cl.seller_id = u.user_id
+            WHERE c.user_id = ?
+            ORDER BY c.added_at DESC
         ");
-        $items = $result->fetch_all(MYSQLI_ASSOC);
-        echo json_encode(['success' => true, 'items' => $items]);
+
+        $stmt->bind_param("i", $user_id);
+        $stmt->execute();
+
+        $items = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+
+        echo json_encode([
+            'success' => true,
+            'items' => $items
+        ]);
         break;
 }
-?>

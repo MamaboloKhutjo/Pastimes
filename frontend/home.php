@@ -1,3 +1,15 @@
+<?php
+session_start();
+require_once '../backend/DBConn.php';
+
+$result = $conn->query("
+    SELECT * FROM tblclothes
+    WHERE status='available'
+    ORDER BY clothing_id DESC
+");
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -92,24 +104,37 @@
  
     <!-- Product grid -->
     <!-- PHP: foreach $products as $p — render product cards -->
-    <div class="product-grid" id="productGrid">
- 
-      <!-- Hero / editorial pick -->
-      <a href="./product.php" class="product-card hero">
-        <div class="product-card-img">
-          <img src="./assets/images/trench_coat.jpg" alt="Burberry Trench">
-          <div class="product-card-badge editorial">Editorial Pick</div>
-          <div class="product-card-heart" onclick="toggleHeart(event,this)"><i class="far fa-heart"></i></div>
-          <div class="product-card-overlay">
-            <div class="title">1970s Burberry Trench — Cape Town</div>
-            <div class="price">R 4 200</div>
-            <div class="seller">
-              <img src="./assets/images/profile_man1.jpg" alt="seller">
-              @the_archivist
-            </div>
-          </div>
+    <div class="product-grid">
+
+<?php while ($p = $result->fetch_assoc()): ?>
+
+<a href="./product.php?id=<?= $p['clothing_id'] ?>" class="product-card">
+
+    <div class="product-card-img">
+        <img src="<?= htmlspecialchars($p['images']) ?>">
+    </div>
+
+    <div class="product-card-info">
+
+        <div class="product-card-title">
+            <?= htmlspecialchars($p['title']) ?>
         </div>
-      </a>
+
+        <div class="product-card-meta">
+            <?= htmlspecialchars($p['category']) ?> · <?= htmlspecialchars($p['size']) ?>
+        </div>
+
+        <div class="product-card-price">
+            R <?= number_format($p['price'], 0) ?>
+        </div>
+
+    </div>
+
+</a>
+
+<?php endwhile; ?>
+
+</div>
  
       <!-- Standard cards -->
       <a href="./product.php" class="product-card">
