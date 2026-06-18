@@ -183,7 +183,7 @@ $avg_resolution = '2.5h'; // Placeholder
             <tbody>
               <tr>
                 <td>#1001</td>
-                <td>John Doe</td>
+                <td>John Smith</td>
                 <td>Payment not received</td>
                 <td><span class="badge badge-warning">Open</span></td>
                 <td>Admin</td>

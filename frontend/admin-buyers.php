@@ -152,12 +152,14 @@ $buyers_count = $buyers->num_rows;
                     <td class="amount-col">R <?= number_format($buyer['total_spent'], 0, '.', ' ') ?></td>
                     <td><?= date('d M Y', strtotime($buyer['created_at'])) ?></td>
                     <td>
-                      <button class="icon-btn" title="View Profile">
-                        <i class="fas fa-eye"></i>
-                      </button>
-                      <button class="icon-btn" title="Suspend">
-                        <i class="fas fa-ban"></i>
-                      </button>
+                        <a href="../backend/api.php?action=view_profile&id=<?= $buyer['user_id'] ?>" class="icon-btn" title="View Profile">
+                            <i class="fas fa-eye"></i>
+                        </a>
+                        <a href="../backend/api.php?action=suspend_user&id=<?= $buyer['user_id'] ?>" 
+                            class="icon-btn" title="Suspend" 
+                            onclick="return confirm('Suspend this user?')">
+                              <i class="fas fa-ban"></i>
+                        </a>
                     </td>
                   </tr>
                 <?php endwhile; ?>

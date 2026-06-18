@@ -149,8 +149,8 @@ $flagged_count = $flagged->num_rows;
                     <td><span class="badge badge-warning"><?= htmlspecialchars($item['reason']) ?></span></td>
                     <td><?= date('d M Y', strtotime($item['created_at'])) ?></td>
                     <td>
-                      <button class="btn btn-sm btn-success" title="Approve">Keep</button>
-                      <button class="btn btn-sm btn-danger" title="Remove">Remove</button>
+                        <a href="../backend/api.php?action=keep_flagged&id=<?= $item['clothing_id'] ?>" class="btn btn-sm btn-success">Keep</a>
+                        <a href="../backend/api.php?action=remove_flagged&id=<?= $item['clothing_id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Remove this item?')">Remove</a>
                     </td>
                   </tr>
                 <?php endwhile; ?>

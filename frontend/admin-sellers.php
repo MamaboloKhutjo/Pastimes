@@ -153,12 +153,14 @@ $sellers_count = $sellers->num_rows;
                     <td class="amount-col">R <?= number_format($seller['total_sales'], 0, '.', ' ') ?></td>
                     <td><?= date('d M Y', strtotime($seller['created_at'])) ?></td>
                     <td>
-                      <button class="icon-btn" title="View Profile">
-                        <i class="fas fa-eye"></i>
-                      </button>
-                      <button class="icon-btn" title="Suspend">
-                        <i class="fas fa-ban"></i>
-                      </button>
+                        <a href="../backend/api.php?action=view_profile&id=<?= $seller['user_id'] ?>" class="icon-btn" title="View Profile">
+                            <i class="fas fa-eye"></i>
+                        </a>
+                        <a href="../backend/api.php?action=suspend_user&id=<?= $seller['user_id'] ?>" 
+                           class="icon-btn" title="Suspend" 
+                           onclick="return confirm('Suspend this user?')">
+                           <i class="fas fa-ban"></i>
+                        </a>
                     </td>
                   </tr>
                 <?php endwhile; ?>

@@ -167,12 +167,14 @@ $sold = $conn->query("SELECT COUNT(*) as count FROM tblclothes WHERE status = 's
                     </td>
                     <td><?= date('d M Y', strtotime($listing['created_at'])) ?></td>
                     <td>
-                      <button class="icon-btn" title="View">
-                        <i class="fas fa-eye"></i>
-                      </button>
-                      <button class="icon-btn" title="Remove">
-                        <i class="fas fa-trash"></i>
-                      </button>
+                        <a href="../backend/api.php?action=approve_listing&id=<?= $listing['clothing_id'] ?>" class="icon-btn" title="Approve">
+                            <i class="fas fa-check"></i>
+                        </a>
+                        <a href="../backend/api.php?action=delete_listing&id=<?= $listing['clothing_id'] ?>" 
+                            class="icon-btn text-danger" title="Remove"
+                            onclick="return confirm('Delete this listing?')">
+                             <i class="fas fa-trash"></i>
+                        </a>
                     </td>
                   </tr>
                 <?php endwhile; ?>
