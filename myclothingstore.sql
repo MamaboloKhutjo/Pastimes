@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 03, 2026 at 08:19 PM
+-- Generation Time: Jun 18, 2026 at 06:41 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -59,6 +59,20 @@ CREATE TABLE `tblaorder` (
   `delivery_method` varchar(50) DEFAULT NULL,
   `delivery_fee` decimal(10,2) DEFAULT NULL,
   `status` enum('pending','paid','shipped','delivered','cancelled') DEFAULT 'pending'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tblcart`
+--
+
+CREATE TABLE `tblcart` (
+  `cart_id` int(11) NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `clothing_id` int(11) DEFAULT NULL,
+  `quantity` int(11) DEFAULT 1,
+  `added_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -124,8 +138,7 @@ CREATE TABLE `tbluser` (
 
 INSERT INTO `tbluser` (`user_id`, `username`, `email`, `password_hash`, `first_name`, `last_name`, `role`, `status`, `city`, `bio`, `verified`, `profile_image`, `created_at`) VALUES
 (1, 'mashaole', 'mashaole@example.com', '482c811da5d5b4bc6d497ffa98491e38', 'Mashaole', 'Letsoalo', 'buyer', 'pending', 'Cape Town', 'Vintage lover', 1, NULL, '2026-05-03 16:51:35'),
-(2, 'khutjo_mmamabolo', 'khutjo@example.com', '73a054cc528f91ca1bbdda3589b6a22d', 'Khutjo', 'Mmamabolo', 'seller', 'pending', 'JHB', 'Curated archive', 1, NULL, '2026-05-03 17:41:12'),
-(3, 'LMS147', 'letsoalo@gmail.com', 'f91e15dbec69fc40f81f0876e7009648', 'Mashaole', 'Letsoalo', 'buyer', 'pending', 'Pretoria, GP', '', 1, NULL, '2026-05-03 17:51:48');
+(2, 'khutjo_mmamabolo', 'khutjo@example.com', '73a054cc528f91ca1bbdda3589b6a22d', 'Khutjo', 'Mmamabolo', 'seller', 'pending', 'JHB', 'Curated archive', 1, NULL, '2026-05-03 17:41:12');
 
 --
 -- Indexes for dumped tables
@@ -145,6 +158,14 @@ ALTER TABLE `tbladmin`
 ALTER TABLE `tblaorder`
   ADD PRIMARY KEY (`order_id`),
   ADD KEY `buyer_id` (`buyer_id`);
+
+--
+-- Indexes for table `tblcart`
+--
+ALTER TABLE `tblcart`
+  ADD PRIMARY KEY (`cart_id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `clothing_id` (`clothing_id`);
 
 --
 -- Indexes for table `tblclothes`
@@ -186,6 +207,12 @@ ALTER TABLE `tblaorder`
   MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `tblcart`
+--
+ALTER TABLE `tblcart`
+  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `tblclothes`
 --
 ALTER TABLE `tblclothes`
@@ -201,7 +228,7 @@ ALTER TABLE `tblorderitem`
 -- AUTO_INCREMENT for table `tbluser`
 --
 ALTER TABLE `tbluser`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
@@ -212,6 +239,13 @@ ALTER TABLE `tbluser`
 --
 ALTER TABLE `tblaorder`
   ADD CONSTRAINT `tblaorder_ibfk_1` FOREIGN KEY (`buyer_id`) REFERENCES `tbluser` (`user_id`);
+
+--
+-- Constraints for table `tblcart`
+--
+ALTER TABLE `tblcart`
+  ADD CONSTRAINT `tblcart_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `tbluser` (`user_id`),
+  ADD CONSTRAINT `tblcart_ibfk_2` FOREIGN KEY (`clothing_id`) REFERENCES `tblclothes` (`clothing_id`);
 
 --
 -- Constraints for table `tblclothes`

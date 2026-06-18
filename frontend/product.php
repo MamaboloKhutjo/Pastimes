@@ -1,9 +1,45 @@
+<?php
+session_start();
+require_once '../backend/DBConn.php';
+
+if (!isset($_GET['id']) || empty($_GET['id'])) {
+    header("Location: home.php");
+    exit();
+}
+
+$product_id = (int)$_GET['id'];
+
+// Fetch product details
+$stmt = $conn->prepare("
+    SELECT 
+        cl.*,
+        u.first_name,
+        u.last_name,
+        u.city as seller_city,
+        u.username as seller_username
+    FROM tblclothes cl
+    JOIN tbluser u ON cl.seller_id = u.user_id
+    WHERE cl.clothing_id = ?
+");
+$stmt->bind_param("i", $product_id);
+$stmt->execute();
+$product = $stmt->get_result()->fetch_assoc();
+
+if (!$product) {
+    echo "<h2>Product not found</h2>";
+    exit();
+}
+
+// For price display
+$price = (int)$product['price'];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Pastimes — Product Detail</title>
+  <title>Pastimes — <?= htmlspecialchars($product['title']) ?></title>
   <link rel="stylesheet" href="../frontend/css/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
@@ -22,48 +58,40 @@
     </header>
  
     <!-- Product images -->
-    <!-- PHP: $product loaded from DB by $_GET['id'] -->
     <div class="product-detail-img">
-      <img src="#" alt="Product" id="mainImg">
+      <img src="<?= htmlspecialchars($product['images'] ?? './assets/images/default.jpg') ?>" 
+           alt="<?= htmlspecialchars($product['title']) ?>" id="mainImg">
     </div>
  
-    <!-- Thumbnails -->
+    <!-- Thumbnails (can be improved later with multiple images) -->
     <div class="product-thumbs">
-      <div class="product-thumb active" onclick="setImg(this,'https://images.unsplash.com/photo-1594938298603-c8148c4b4a75?w=400')">
-        <img src="#" alt="thumb 1">
-      </div>
-      <div class="product-thumb" onclick="setImg(this,'https://images.unsplash.com/photo-1551803091-e20673f15770?w=400')">
-        <img src="#" alt="thumb 2">
-      </div>
-      <div class="product-thumb" onclick="setImg(this,'https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=400')">
-        <img src="#" alt="thumb 3">
+      <div class="product-thumb active">
+        <img src="<?= htmlspecialchars($product['images'] ?? './assets/images/default.jpg') ?>" alt="thumb 1">
       </div>
     </div>
  
     <!-- Product info -->
     <div class="product-detail-body">
       <div class="d-flex justify-between align-center mb-16">
-        <!-- PHP: echo $product['title'] -->
-        <h1 class="product-detail-title">1990s Italian Wool Oversized Blazer</h1>
+        <h1 class="product-detail-title"><?= htmlspecialchars($product['title']) ?></h1>
         <span class="badge badge-rare">Rare Find</span>
       </div>
  
       <div class="d-flex align-center gap-12">
-        <!-- PHP: echo 'R ' . number_format($product['price'], 0, '.', ' ') -->
-        <div class="product-detail-price">R 3 200</div>
+        <div class="product-detail-price">R <?= number_format($price, 0) ?></div>
         <span class="badge badge-approved">Verified Listing</span>
       </div>
  
       <!-- Seller card -->
       <div class="product-detail-seller">
         <div class="product-detail-seller-info">
-          <img src="#" alt="Seller">
+          <img src="./assets/images/profile_man1.jpg" alt="Seller">
           <div>
-            <!-- PHP: echo $product['seller_username'] -->
-            <div class="product-detail-seller-name">@the_curated_archive</div>
+            <div class="product-detail-seller-name">@<?= htmlspecialchars($product['seller_username'] ?? 'seller') ?></div>
             <div class="badge badge-approved" style="font-size:.65rem">Approved Seller</div>
-            <!-- PHP: echo $seller['rating'] . ' · ' . $seller['review_count'] . ' reviews · ' . $seller['city'] -->
-            <div class="product-detail-seller-meta mt-8">⭐ 4.9 · 128 reviews · Cape Town</div>
+            <div class="product-detail-seller-meta mt-8">
+              ⭐ 4.9 · Cape Town
+            </div>
           </div>
         </div>
         <button class="btn btn-secondary btn-sm" onclick="followSeller()">Follow</button>
@@ -73,51 +101,43 @@
       <div class="product-specs">
         <div class="spec-item">
           <div class="spec-label">Condition</div>
-          <!-- PHP: echo $product['condition'] -->
-          <div class="spec-value">Excellent Vintage</div>
+          <div class="spec-value"><?= htmlspecialchars($product['condition'] ?? 'Excellent Vintage') ?></div>
         </div>
         <div class="spec-item">
           <div class="spec-label">Size</div>
-          <!-- PHP: echo $product['size'] -->
-          <div class="spec-value">EU 40 / L</div>
+          <div class="spec-value"><?= htmlspecialchars($product['size'] ?? 'N/A') ?></div>
         </div>
         <div class="spec-item">
           <div class="spec-label">Material</div>
-          <!-- PHP: echo $product['material'] -->
-          <div class="spec-value">100% Wool</div>
+          <div class="spec-value"><?= htmlspecialchars($product['material'] ?? 'N/A') ?></div>
         </div>
         <div class="spec-item">
           <div class="spec-label">Ships From</div>
-          <!-- PHP: echo $product['ships_from'] -->
-          <div class="spec-value">Cape Town, WC</div>
+          <div class="spec-value"><?= htmlspecialchars($product['seller_city'] ?? 'South Africa') ?></div>
         </div>
       </div>
  
       <!-- Description -->
       <div class="product-detail-desc">
         <h4>About This Piece</h4>
-        <!-- PHP: echo nl2br(htmlspecialchars($product['description'])) -->
-        <p>Beautiful charcoal grey blazer from the late 90s. Made in Italy from 100% virgin wool. Structured shoulders, three-button closure, silk lining. No stains, no damage — an exceptional find for anyone building an archival wardrobe.</p>
+        <p><?= nl2br(htmlspecialchars($product['description'] ?? 'No description available.')) ?></p>
       </div>
  
-      <!-- Spacer for sticky footer -->
       <div style="height:100px"></div>
     </div>
  
     <!-- Sticky action bar -->
     <div class="product-actions-sticky">
-      <!-- PHP: action handled by backend to open conversation with seller -->
-      <a href="./messages.php" class="btn btn-secondary">
-        <i class="fas fa-comment"></i> Message
+      <a href="./messages.php?to=<?= $product['seller_id'] ?? '' ?>" class="btn btn-secondary">
+        <i class="fas fa-comment"></i> Message Seller
       </a>
-      <!-- PHP: add to cart action -->
-      <button class="btn btn-primary" onclick="addToCart()">
-        Add to Cart · R 3 200
+      <button onclick="addToCart(<?= $product_id ?>)" class="btn btn-primary">
+        Add to Cart · R <?= number_format($price, 0) ?>
       </button>
     </div>
  
     <!-- Bottom nav -->
-     <nav class="bottom-nav">
+    <nav class="bottom-nav">
       <a href="./home.php" class="bottom-nav-item">
         <i class="fas fa-home nav-icon-lg"></i> Home
       </a>
@@ -137,5 +157,33 @@
   </div>
  
   <script src="../frontend/js/script.js"></script>
+  <script>
+    function addToCart(clothingId) {
+      if (!clothingId) return;
+
+      fetch('../backend/cart_handler.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: `action=add_to_cart&clothing_id=${clothingId}&quantity=1`
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          alert(data.message || "✅ Added to cart!");
+        } else {
+          alert(data.message || "Failed to add to cart");
+        }
+      })
+      .catch(() => {
+        alert("Error connecting to server");
+      });
+    }
+
+    function followSeller() {
+      alert("Follow feature coming soon!");
+    }
+  </script>
 </body>
 </html>
