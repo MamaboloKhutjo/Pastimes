@@ -26,7 +26,8 @@ $stmt->execute();
 $product = $stmt->get_result()->fetch_assoc();
 
 if (!$product) {
-    echo "<h2>Product not found</h2>";
+    echo "<h2 style='text-align:center;margin-top:50px;'>Product not found.</h2>";
+    echo "<p style='text-align:center;'><a href='home.php'>← Back to Home</a></p>";
     exit();
 }
 
@@ -128,7 +129,7 @@ $price = (int)$product['price'];
  
     <!-- Sticky action bar -->
     <div class="product-actions-sticky">
-      <a href="./messages.php?to=<?= $product['seller_id'] ?? '' ?>" class="btn btn-secondary">
+      <a href="./messages.php" class="btn btn-secondary">
         <i class="fas fa-comment"></i> Message Seller
       </a>
       <button onclick="addToCart(<?= $product_id ?>)" class="btn btn-primary">

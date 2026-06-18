@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 18, 2026 at 06:41 PM
+-- Generation Time: Jun 18, 2026 at 09:26 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -93,8 +93,22 @@ CREATE TABLE `tblclothes` (
   `category` varchar(50) DEFAULT NULL,
   `city` varchar(100) DEFAULT NULL,
   `status` enum('available','sold','pending') DEFAULT 'available',
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `images` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tblclothes`
+--
+
+INSERT INTO `tblclothes` (`clothing_id`, `seller_id`, `title`, `description`, `price`, `condition`, `size`, `material`, `category`, `city`, `status`, `created_at`, `images`) VALUES
+(4, 2, '1970s Burberry Trench Coat', 'Classic beige Burberry trench in excellent vintage condition. Timeless piece.', 4200.00, 'Excellent Vintage', 'M', 'Cotton Gabardine', 'outerwear', 'Cape Town', 'available', '2026-06-18 19:19:25', './assets/images/trench_coat.jpg'),
+(5, 2, 'Japanese Denim Jacket', 'Authentic Kapital Japanese denim jacket. Rare find.', 5500.00, 'Very Good', 'L', 'Denim', 'outerwear', 'Johannesburg', 'available', '2026-06-18 19:19:25', './assets/images/denim_jacket.jpg'),
+(6, 2, 'Vintage Leather Jacket', 'Black leather motorcycle jacket. Perfect condition.', 2850.00, 'Good', 'M', 'Leather', 'outerwear', 'Durban', 'available', '2026-06-18 19:19:25', './assets/images/leather_jacket.jpg'),
+(7, 2, 'Silk Wrap Blouse', 'Elegant vintage silk blouse.', 1500.00, 'Excellent Vintage', 'S', 'Silk', 'tops', 'Cape Town', 'available', '2026-06-18 19:19:25', './assets/images/silk_blouse.jpg'),
+(8, 2, 'Linen Co-ord Set', 'Sustainable linen two-piece set.', 1900.00, 'New with tags', 'XS', 'Linen', 'bottoms', 'Johannesburg', 'available', '2026-06-18 19:19:25', './assets/images/linen_coord.jpg'),
+(9, 2, 'Archive Silk Scarf', 'Luxury vintage silk scarf.', 950.00, 'Very Good', 'One Size', 'Silk', 'accessories', 'Durban', 'available', '2026-06-18 19:19:25', './assets/images/silk_scarf.jpg'),
+(10, 2, 'Cashmere Sweater', 'Premium cashmere knitwear.', 3400.00, 'Excellent Vintage', 'L', 'Cashmere', 'knitwear', 'Cape Town', 'available', '2026-06-18 19:19:25', './assets/images/cashmere_sweater.jpg');
 
 -- --------------------------------------------------------
 
@@ -216,7 +230,7 @@ ALTER TABLE `tblcart`
 -- AUTO_INCREMENT for table `tblclothes`
 --
 ALTER TABLE `tblclothes`
-  MODIFY `clothing_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `clothing_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `tblorderitem`
@@ -228,7 +242,7 @@ ALTER TABLE `tblorderitem`
 -- AUTO_INCREMENT for table `tbluser`
 --
 ALTER TABLE `tbluser`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables
